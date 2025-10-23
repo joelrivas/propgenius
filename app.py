@@ -1,7 +1,7 @@
 import streamlit as st
 from google import genai
 
-API_KEY = "AIzaSyCsM_TK4PgcJpmdDBSewaiU4BPgdYiLY_o"
+API_KEY = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=API_KEY)
 
 st.title("PropGenius: Generador de Prompts de Venta Inmobiliaria")
