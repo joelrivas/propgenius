@@ -10,7 +10,7 @@ def generate_rag_prompt(client, vectorstore, prop_feat):
 
     prop_str = (f"{prop_feat['type']} en {prop_feat['location']}. "
                 f"Caracteristicas: {prop_feat['charact']}. "
-                f"Público objetivo: {prop_feat['public']}")
+                f"Público objetivo: {prop_feat['audience']}.")
     
     retriever = vectorstore.as_retriever(search_kwargs={'k': 3})
     docs_retrieved = retriever.invoke(prop_str)
@@ -18,7 +18,7 @@ def generate_rag_prompt(client, vectorstore, prop_feat):
     context = "\n---\n".join([d.page_content for d in docs_retrieved])
 
     prompt = f"""
-    Eres un experto en bienes raíces y copywriter con un tono {prop_feat['public']} específico. 
+    Eres un experto en bienes raíces y copywriter con un tono {prop_feat['audience']}. específico. 
     Genera una descripción de venta corta, convincente para una propiedad.
 
     **Información de la Propiedad:**
