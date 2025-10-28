@@ -1,8 +1,13 @@
 """Testing and quality evaluation for RAG systems."""
 
 import json
-from google import genai
 from google.genai.errors import APIError
+from pydantic import BaseModel
+
+class EvaluationResult(BaseModel):
+    """Schema for evaluation result."""
+    faithfulness_score: int
+    justification: str
 
 
 def evaluate_faithfulness(client, query, context, response):
@@ -18,20 +23,18 @@ def evaluate_faithfulness(client, query, context, response):
     **Respuesta a Evaluar:** {response}
 
     Tu respuesta debe ser un objeto JSON que contenga solo el puntaje (0 o 1) y la justificacion.
-
-    FORMATO DE RESPUESTA:
-    {{
-        "faithfulness_score": <0 o 1>,
-        "justification": "<tu breve justificacion aca>"
-    }}
     """
 
     try:
         llm_response = client.models.generate_content(
             model="gemini-2.5-pro",
-            contents=prompt
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json",
+                "response_schema": EvaluationResult
+            }
         )
-        print('LLM Response: ', llm_response.text)
+        # print('LLM Response: ', llm_response.text)
         return json.loads(llm_response.text)
     except APIError as e:
-        return {"faithfulness_score": None, "justification": "Error del evaluador: {e}"}
+        return {"faithfulness_score": None, "justification": f"Error del evaluador: {e}"}
