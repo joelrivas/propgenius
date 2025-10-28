@@ -22,7 +22,7 @@ if 'api_key_set' not in st.session_state:
 
 # --- 1. BARRA LATERAL PARA INPUT DE API KEY Y DATOS ---
 
-st.sidebar.header("🔑 Configuración y Clave API")
+st.sidebar.header("Configuración")
 API_KEY = st.sidebar.text_input(
     "Google AI API Key:", 
     type="password",
@@ -57,7 +57,7 @@ if not st.session_state.api_key_set:
     st.info("Introduce tu Google AI API Key en la barra lateral para comenzar.")
 else:
     # Si todo está inicializado, mostramos el formulario
-    st.sidebar.header("📝 Datos de la Propiedad")
+    st.sidebar.header("Datos de la Propiedad")
     with st.sidebar.form("property_form"):
         propiedad_tipo = st.selectbox("Tipo de Propiedad", ["Casa", "Departamento", "Terreno"])
         propiedad_ubicacion = st.text_input("Ubicación", "Condesa, CDMX")
@@ -87,13 +87,13 @@ else:
             generated_copy, context_used, query_str = generate_rag_prompt(
                 client, vectorstore_db, propiedad_data)
 
-        st.success("✅ Prompt de Venta Generado:")
+        st.success("Prompt de Venta Generado:")
         st.markdown(generated_copy)
 
         st.divider()
 
         # 2.2 Ejecución del Testing (Evaluator)
-        st.subheader("📊 Testing de Calidad del Output (Evaluación LLM)")
+        st.subheader("Testing de Calidad del Output (Evaluación LLM)")
 
         col1, col2 = st.columns([1, 2])
 
@@ -117,7 +117,7 @@ else:
 
 
         # 2.3 Documentación del Pipeline
-        st.subheader("🔎 Documentación: Trazabilidad del Dato")
+        st.subheader("Documentación: Trazabilidad del Dato")
         with st.expander("Ver Documentos de Contexto Histórico (Data Lineage)"):
             st.caption("Datos pasados que el modelo usó como referencia (context):")
             st.code(context_used, language='text')
