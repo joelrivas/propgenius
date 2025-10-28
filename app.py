@@ -28,6 +28,7 @@ API_KEY = st.sidebar.text_input(
     type="password",
     help="Introduce tu clave. No se guarda."
 )
+st.sidebar.markdown("[Get a Gemini API key](https://aistudio.google.com/app/api-keys)")
 
 if not st.session_state.api_key_set and API_KEY:
     try:
