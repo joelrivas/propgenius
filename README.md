@@ -62,6 +62,10 @@ The application will open in your browser.
 2. Once the key is validated, the RAG pipeline will initialize (data vectorization).
 3. Enter the property characteristics and click "Generate Prompt and Evaluate".
 
+<img width="1285" height="646" alt="Screenshot_2025-10-28_17-06-17" src="https://github.com/user-attachments/assets/1e20f417-b268-4f77-9d3a-7eb3c23d56b3" />
+<img width="1284" height="629" alt="Screenshot_2025-10-28_18-22-36" src="https://github.com/user-attachments/assets/ebfe8ead-3ae7-47cb-b82b-2b2001f357a2" />
+
+
 ---
 
 ### 🧑‍💻 Author
